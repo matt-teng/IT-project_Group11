@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Assignment 1 Shell Script - Group 11
 
 # Update System
