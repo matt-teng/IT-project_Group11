@@ -65,7 +65,7 @@ innodb_file_per_table = 1
 innodb_file_format = Barracuda
 
 # log in the mysql
-sudo -S mysql -u root -p 
+sudo -S mysql -u root -p admin
 CREATE DATABASE moodle DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci; 
 create user 'moodler'@'localhost' IDENTIFIED BY 'moodlerpassword'; 
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle.* TO 'moodler'@'localhost' IDENTIFIED BY 'moodlerpassword';
