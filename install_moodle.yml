@@ -106,10 +106,10 @@
         innodb_file_format = Barracuda
 
     - mysql_user:
-        name: moodler
-        password: moodlerpassword
-        priv: '*.*:ALL,GRANT'
-        state: present
+       name: moodler
+       password: moodlerpassword
+       priv: '*.*:ALL,GRANT'
+       state: present
 
     - name: Fix 'support_tools' permissions
       file: 
