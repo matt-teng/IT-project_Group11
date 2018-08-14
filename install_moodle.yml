@@ -84,9 +84,10 @@
       notify:
         - restart apache2
 
-    -name: Download moodle
-     get_url: https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz
-     dest: /tmp/moodle.tgz
+    - name: Download moodle
+      get_url: 
+        url: https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz
+        dest: /tmp/moodle.tgz
 
     -name: Extract moodle into /var/www/html
      unarchive:
