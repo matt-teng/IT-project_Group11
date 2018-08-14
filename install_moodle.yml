@@ -105,7 +105,6 @@
           innodb_file_per_table = 1
         innodb_file_format = Barracuda
 
-    #Add the mySql user
     - mysql_user:
         name: moodler
         password: moodlerpassword
