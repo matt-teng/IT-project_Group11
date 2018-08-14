@@ -8,19 +8,19 @@
     mysql_root_password: admin
 
   tasks:
-    -name: Enable UFW
-     ufw: 
-      direction: incoming
-      policy: deny
-      state: enabled
+    - name: Enable UFW
+      ufw: 
+       direction: incoming
+       policy: deny
+       state: enabled
 
-    -name: UFW allow port 22 and 3306
-     ufw:
-      rule: allow
-      port: "{{ports}}"
-    with_ports:
-      - 22
-      - 3306
+    - name: UFW allow port 22 and 3306
+      ufw:
+       rule: allow
+       port: "{{ports}}"
+      with_ports:
+       - 22
+       - 3306
 
     - name: Install Apache2
       apt:
