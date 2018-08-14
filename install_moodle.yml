@@ -17,8 +17,8 @@
     - name: UFW allow port 22 and 3306
       ufw:
        rule: allow
-       port: "{{ports}}"
-      with_ports:
+       port: "{{items}}"
+      with_items:
        - 22
        - 3306
 
