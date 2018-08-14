@@ -104,7 +104,7 @@
           defult_storage_engine = innodb
           innodb_file_per_table = 1
         innodb_file_format = Barracuda
-
+    # Add mysql user
     - mysql_user:
        name: moodler
        password: moodlerpassword
