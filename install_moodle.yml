@@ -117,15 +117,13 @@
         path: /dir/tools 
         mode: 777
         recurse: yes
-
+        
+    - name: print stdout
+      debug:
+        msg: ""
+        
   handlers:
   - name: restart apache2
     service: 
       name: apache2
       state: restart
-
-
-
-    - name: print stdout
-      debug:
-        msg: ""
