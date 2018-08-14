@@ -17,10 +17,7 @@
     - name: UFW allow port 22 and 3306
       ufw:
        rule: allow
-       port: "{{items}}"
-      with_items:
-       - 22
-       - 3306
+       port: 22
 
     - name: Install Apache2
       apt:
