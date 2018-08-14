@@ -1,0 +1,130 @@
+---
+
+- name: Install the moodle via ansible
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  vars: 
+    mysql_root_password: admin
+
+  tasks:
+    -name: Enable UFW
+     ufw: 
+      direction: incoming
+      policy: deny
+      state: enabled
+
+    -name: UFW allow port 22 and 3306
+     ufw:
+      rule: allow
+      port: "{{ports}}"
+    with_ports:
+      - 22
+      - 3306
+
+    - name: Install Apache2
+      apt:
+           name: "{{item}}"
+           state: present
+      with_items: 
+        - apache2
+        - apache2-doc
+        - apache2-utils
+
+    - name: Install Mysql Server
+      apt:
+        name: mysql-server
+        state: present
+        update_cache: yes
+
+    - name: Copy .my.cnf file with root password
+      template: src=templates/.my.cnf dest=/etc/mysql/my.cnf owner=root mode=0600
+
+    - name: Start Mysql Server
+      sudo: yes
+      service: 
+        name: mysql
+        state: started
+        enabled: true
+
+    - name: Update Mysql root password for all root accounts
+      mysql_user:
+        name: root
+        hosts: "{{item}}"
+        password: "{{mysql_root_password}}"
+        login_user: root
+        login_password: "{{mysql_root_password}}"
+        priv: "*.*:ALL,GRANT"
+        state: present
+      with_items:
+        - "{{ansible_hostname}}"
+        - 127.0.0.1
+        - ::1
+        - localhost
+
+    - name: Installing php
+      apt: 
+        name: "{{item}}" 
+        state: present
+      with_items:
+      - php
+      - php-bcmath
+      - php-bz2
+      - php-intl
+      - php-gd
+      - php-mbstring
+      - php-mcrypt
+      - php-mysql
+      - php-zip
+
+    - name: Install common PHP Extensions
+      apt: 
+        name: libapache2-mod-php
+        state: present
+      notify:
+        - restart apache2
+
+    -name: Download moodle
+     get_url: https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz
+     dest: /tmp/moodle.tgz
+
+    -name: Extract moodle into /var/www/html
+     unarchive:
+      src: /tmp/moodle.tgz
+      dest: /var/www/html
+
+    -name: change some permissions for the file
+    # Todo
+
+    -name: change the mysqlDatabase configuration file
+     -blockinfile: 
+      path: /etc/mysql/mysql.conf.d/mysqld.cnf
+      block: |
+        defult_storage_engine = innodb
+        innodb_file_per_table = 1
+        innodb_file_format = Barracuda
+
+    #Add the mySql user
+    - mysql_user:
+        name: moodler
+        password: moodlerpassword
+        priv: '*.*:ALL,GRANT'
+        state: present
+
+    - name: Fix 'support_tools' permissions
+      file: 
+        path: /dir/tools 
+        mode: 777
+        recurse: yes
+
+  handlers:
+  - name: restart apache2
+    service: 
+      name: apache2
+      state: restart
+
+
+
+    - name: print stdout
+      debug:
+        msg: ""
