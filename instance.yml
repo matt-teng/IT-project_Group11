@@ -9,7 +9,7 @@
       instance_type: t2.micro
       security_group: launch1 # Change the security group name here
       image: ami-ba602bc2 # This is an AMI i created myself
-      keypair: ass1 # This is one of my keys that i already have in AWS
+      keypair: wp_group11 # This is one of my keys that i already have in AWS
       region: us-west-2 # Change the Region
       count: 1
 
@@ -40,16 +40,6 @@
               cidr_ip: 0.0.0.0/0
         register: basic_firewall
       
-      - name: Create a new EC2 key
-        ec2_key:
-            name: "{{ keypair }}"
-            region: "{{ region }}"
-        register: ec2_key_result
- 
-      - name: Save private key
-        copy: content="{{ ec2_key_result.key.private_key }}" dest="./ass1.pem" mode=0600
-        when: ec2_key_result.changed
-
       - name: Launch the new EC2 Instance
         local_action: ec2 
                       group={{ security_group }} 
