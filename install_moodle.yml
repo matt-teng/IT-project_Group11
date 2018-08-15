@@ -115,4 +115,4 @@
   - name: restart apache2
     service: 
       name: apache2
-      state: restart
+      state: restarted
