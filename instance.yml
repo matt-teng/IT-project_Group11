@@ -79,4 +79,127 @@
           tags:
             Name: webserver
             
+  - hosts: ec2hosts
+    name: Install the moodle via ansible
+    user: ec2-user
+    gather_facts: true
+    vars: 
+      mysql_root_password: admin
+
+    tasks:
+      - name: Enable UFW
+        ufw: 
+         direction: incoming
+         policy: deny
+         state: enabled
+
+      - name: UFW allow port 22
+        ufw:
+         rule: allow
+         port: 22
+         
+      - name: UFW allow port 80
+        ufw:
+         rule: allow
+         port: 80
+         
+      - name: UFW allow port 3306
+        ufw:
+         rule: allow
+         port: 3306
+
+      - name: Install Apache2
+        apt:
+             name: "{{item}}"
+             state: present
+        with_items: 
+          - apache2
+          - apache2-doc
+          - apache2-utils
+
+      - name: Install Mysql Server
+        apt:
+          name: mysql-server
+          state: present
+          update_cache: yes
+         
+      - name: Install Mysql python module
+        apt:
+          name: python-mysqldb
+          state: present
+
+      - name: Start Mysql Server
+        sudo: yes
+        service: 
+          name: mysql
+          state: started
+          enabled: true
+
+      - name: Installing php
+        apt: 
+          name: "{{item}}" 
+          state: present
+        with_items:
+        - php
+        - php-bcmath
+        - php-bz2
+        - php-intl
+        - php-gd
+        - php-mbstring
+        - php-mcrypt
+        - php-mysql
+        - php-zip
+
+      - name: Install common PHP Extensions
+        apt: 
+          name: libapache2-mod-php
+          state: present
+        notify:
+          - restart apache2
+
+      - name: Download moodle
+        get_url: 
+          url: https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz
+          dest: /tmp/moodle.tgz
+
+      - name: Extract moodle into /var/www/html
+        unarchive:
+          src: /tmp/moodle.tgz
+          dest: /var/www/html
+
+      #-name: change some permissions for the file
+      # Todo
+
+      - name: change the mysqlDatabase configuration file
+        blockinfile: 
+          path: /etc/mysql/mysql.conf.d/mysqld.cnf
+          block: |
+            defult_storage_engine = innodb
+            innodb_file_per_table = 1
+            innodb_file_format = Barracuda
+          
+      # Add mysql user
+      - mysql_user:
+         name: moodler
+         password: moodlerpassword
+         priv: '*.*:ALL,GRANT'
+         state: present
+
+      - name: Fix 'support_tools' permissions
+        file: 
+          path: /dir/tools 
+          mode: 777
+          recurse: yes
+          
+      - name: print stdout
+        debug:
+          msg: ""
+          
+    handlers:
+    - name: restart apache2
+      service: 
+        name: apache2
+        state: restarted
+
+            
       
