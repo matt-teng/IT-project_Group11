@@ -33,6 +33,11 @@
         name: mysql-server
         state: present
         update_cache: yes
+       
+    - name: Install Mysql python module
+      apt:
+        name: mysql-python
+        state: present
 
     - name: Start Mysql Server
       sudo: yes
