@@ -36,7 +36,7 @@
        
     - name: Install Mysql python module
       apt:
-        name: mysql-python
+        name: python-mysqldb
         state: present
 
     - name: Start Mysql Server
