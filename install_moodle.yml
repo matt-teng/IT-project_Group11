@@ -19,6 +19,11 @@
        rule: allow
        port: 22
        
+    - name: UFW allow port 80
+      ufw:
+       rule: allow
+       port: 80
+       
     - name: UFW allow port 3306
       ufw:
        rule: allow
