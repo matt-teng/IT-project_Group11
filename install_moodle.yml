@@ -41,20 +41,6 @@
         state: started
         enabled: true
 
-    - name: Update Mysql root password for all root accounts
-      mysql_user:
-        name: root
-        hosts: "{{item}}"
-        password: "{{mysql_root_password}}"
-        login_user: root
-        login_password: "{{mysql_root_password}}"
-        priv: "*.*:ALL,GRANT"
-        state: present
-      with_items:
-        - 127.0.0.1
-        - ::1
-        - localhost
-
     - name: Installing php
       apt: 
         name: "{{item}}" 
