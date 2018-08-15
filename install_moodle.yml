@@ -14,10 +14,15 @@
        policy: deny
        state: enabled
 
-    - name: UFW allow port 22 and 3306
+    - name: UFW allow port 22
       ufw:
        rule: allow
        port: 22
+       
+    - name: UFW allow port 3306
+      ufw:
+       rule: allow
+       port: 3306
 
     - name: Install Apache2
       apt:
