@@ -9,7 +9,7 @@
       instance_type: t2.micro
       security_group: launch1 # Change the security group name here
       image: ami-ba602bc2 # This is an AMI i created myself
-      keypair: wp_group11.ppk # This is one of my keys that i already have in AWS
+      keypair: wp_group11 # This is one of my keys that i already have in AWS
       region: us-west-2 # Change the Region
       count: 1
 
