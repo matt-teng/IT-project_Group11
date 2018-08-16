@@ -71,7 +71,7 @@
             
   - hosts: ec2hosts
     name: Install the moodle via ansible
-    user: ec2-user
+    user: ubuntu
     gather_facts: true
     vars: 
       mysql_root_password: admin
