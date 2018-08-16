@@ -69,7 +69,7 @@
           tags:
             Name: webserver
             
-  - hosts: hosts
+  - hosts: ec2hosts
     name: Install the moodle via ansible
     user: ubuntu
     gather_facts: true
