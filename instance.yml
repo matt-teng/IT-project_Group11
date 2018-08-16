@@ -52,7 +52,7 @@
         register: ec2
 
       - name: Add the newly created EC2 instance(s) to the host group
-        add_host: hostname={{ item.private_ip }} groups=ec2hosts
+        add_host: hostname={{ item.public_ip }} groups=ec2hosts
         loop: "{{ ec2.instances }}"
 
       - name: Wait for SSH to come up
