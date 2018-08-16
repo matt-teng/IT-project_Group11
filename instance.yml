@@ -49,7 +49,7 @@
                       region={{ region }} 
                       keypair={{ keypair }}
                       count={{count}}
-        with_items: ec2
+        loop: ec2
 
       - name: Add all instance public IPs to host group
         add_host: hostname={{ item.public_ip }} groups=ec2hosts
