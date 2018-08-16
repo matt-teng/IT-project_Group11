@@ -36,6 +36,12 @@ region = us-west-2"> ~/.aws/config
 
 sudo chmod 666 ~/.aws/config
 
+echo "
+[local]
+localhost
+[webserver]"> ~/hosts
+sudo chmod 666 ~/hosts
+
 
 
 
