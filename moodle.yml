@@ -4,7 +4,7 @@
     connection: local
     gather_facts: False
     vars:
-      key_name: wp_group11
+      keypair: wp_group11
       instance_type: t2.micro
       security_group: launch-wizard-25
       image: ami-ba602bc2
