@@ -39,6 +39,8 @@
   - hosts: launched
     name: Configure instance(s)
     become: True
+    connection: ssh
+    remote_user: ubuntu
     gather_facts: True
     vars: 
       mysql_root_password: admin
