@@ -36,12 +36,12 @@
           timeout: 320
         with_items: "{{ ec2.instances }}"
 
-      - name: Configure instance(s)
-        hosts: launched
-        become: True
-        gather_facts: True
-        vars: 
-          mysql_root_password: admin
+  - name: Configure instance(s)
+    hosts: launched
+    become: True
+    gather_facts: True
+    vars: 
+      mysql_root_password: admin
 
     tasks:
       - name: Enable UFW
