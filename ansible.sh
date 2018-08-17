@@ -1,7 +1,3 @@
-wget https://raw.githubusercontent.com/JPapple/2018_Group11/master/go.sh?token=AoEefgyzowahieh-gSVdskiddmQ0mXHgks5bfhO5wA%3D%3D
-
-sudo bash ./go.sh?token=AoEefgyzowahieh-gSVdskiddmQ0mXHgks5bfhO5wA%3D%3D
-
 # install software to manage repositories
 
 sudo apt update
@@ -41,10 +37,3 @@ echo "
 localhost
 [webserver]"> ~/hosts
 sudo chmod 666 ~/hosts
-
-
-
-
-
-
-
