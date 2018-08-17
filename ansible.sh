@@ -37,3 +37,5 @@ echo "
 localhost
 [webserver]"> ~/hosts
 sudo chmod 666 ~/hosts
+
+wget https://raw.githubusercontent.com/matt-teng/IT-project_Group11/master/wp_group11.pem?token=AV4FZTFJWVzlYGxknS6j5edU1XYGhDzTks5bf-ltwA%3D%3D -O wp_group11.pem
