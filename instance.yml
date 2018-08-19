@@ -83,6 +83,9 @@
       mysql_root_password: admin
 
     tasks:
+      - name: install python 2
+        raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+        
       - name: Enable UFW
         ufw: 
          direction: incoming
