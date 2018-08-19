@@ -78,7 +78,6 @@
   - hosts: ec2hosts
     name: Install the moodle via ansible
     user: ubuntu
-   connection: ssh
     gather_facts: true
     vars: 
       mysql_root_password: admin
