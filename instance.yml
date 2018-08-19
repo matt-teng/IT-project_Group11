@@ -162,14 +162,19 @@
           - restart apache2
 
       - name: Download moodle
-        get_url: 
-          url: https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz
-          dest: /tmp/moodle.tgz
-
-      - name: Extract moodle into /var/www/html
         unarchive:
-          src: /tmp/moodle.tgz
+          src: https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz
           dest: /var/www/html
+          remote_src: yes
+          
+        #get_url: 
+          #url: https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz
+          #dest: /tmp/moodle.tgz
+
+      #- name: Extract moodle into /var/www/html
+        #unarchive:
+          #src: /tmp/moodle.tgz
+          #dest: /var/www/html
 
       #-name: change some permissions for the file
       # Todo
