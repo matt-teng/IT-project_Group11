@@ -80,12 +80,12 @@
     name: Install the moodle via ansible
     user: ubuntu
     gather_facts: False
-    #pre_tasks:
-      #- name: Install python for Ansible
-        #raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-        #register: output
-        #changed_when: output.stdout != ""
-      #- setup: # aka gather_facts
+    pre_tasks:
+      - name: Install python for Ansible
+        raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+        register: output
+        changed_when: output.stdout != ""
+      - setup: # aka gather_facts
     
     tasks:
         
