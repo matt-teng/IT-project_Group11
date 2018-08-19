@@ -86,7 +86,7 @@
         #register: output
         #changed_when: output.stdout != ""
         apt:
-          name: python
+          name: python-minimal
           state: present
       - setup: # aka gather_facts
     
