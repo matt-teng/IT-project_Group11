@@ -75,17 +75,18 @@
           tags:
             Name: webserver
             
-      - name: Installing python to the new distance
-        delegate_to: ec2hosts
-        raw: test -e /usr/bin/python || (sudo apt -y update && sudo apt install -y python-minimal)
             
   - hosts: ec2hosts
     name: Install the moodle via ansible
     user: ubuntu
-    gather_facts: true
-    vars: 
-      mysql_root_password: admin
-
+    gather_facts: False
+    pre_tasks:
+      - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      register: output
+      changed_when: output.stdout != ""
+    - setup: # aka gather_facts
+    
     tasks:
         
       - name: Enable UFW
