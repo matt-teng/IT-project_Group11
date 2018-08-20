@@ -3,7 +3,7 @@
 # Assignment 1 Shell Script - Group 11
 
 echo "================================================="
-echo "System Update, Apache2, MySQL & PHP installing ......"
+echo "System Update, Apache2, MySQL & PHP installing ......."
 echo "================================================="
 
 # Update System
