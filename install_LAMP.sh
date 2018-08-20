@@ -77,3 +77,6 @@ echo "================================================="
 echo "Moodle Installed"
 echo "================================================="
 
+ip = `curl ifconfig.co`
+sudo -u www-data /usr/bin/php /var/www/html/moodle/admin/cli/install.php --chmod=777 --lang=en --wwwroot=http://$ip/moodle --dataroot=/var/www/moodledata --dbtype=mysqli \
+--dbhost=localhost --dbname=moodle --dbuser=moodler --dbpass=moodlerpassword --dbport=22 --prefix=mdl_ --fullname=Group11-2018 --shortname=G11 --adminuser=admin --adminpass=password --non-interactive --allow-unstable --agree-license
