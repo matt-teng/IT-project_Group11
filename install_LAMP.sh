@@ -36,6 +36,8 @@ echo "================================================="
 
 #install PHP
 sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql -y
+sudo apt-get install aspell graphviz php7.0-curl php7.0-gd php7.0-intl php7.0-ldap php7.0-mysql php7.0-pspell php7.0-xml php7.0-xmlrpc php7.0-zip -y
+
 
 #Modifying permissions 
 sudo chmod 777 /var/www/html/
