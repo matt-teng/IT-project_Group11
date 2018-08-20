@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Assignment 1 Shell Script - Group 11
+# Assignment 1 Shell Script - Group 110
 
 echo "================================================="
 echo "System Update, Apache2, MySQL & PHP installing ......"
