@@ -45,7 +45,7 @@ echo "Debug marker1"
 sudo chmod 666 ~/.ssh/wp_group11.pem
 echo"Debug marker2"
 
-ssh-agent bash
+eval `ssh-agent`
 echo"Debug marker3"
 ssh-add ~/.ssh/wp_group11.pem
 echo"Debug marker4"
