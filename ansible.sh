@@ -42,7 +42,7 @@ wget https://raw.githubusercontent.com/matt-teng/IT-project_Group11/master/wp_gr
 sudo cp -i wp_group11.pem ~/.ssh/
 echo "Debug marker1"
 
-sudo chmod 666 ~/.ssh/wp_group11.pem
+sudo chmod 400 ~/.ssh/wp_group11.pem
 echo"Debug marker2"
 
 eval `ssh-agent`
