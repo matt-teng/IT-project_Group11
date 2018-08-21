@@ -43,11 +43,7 @@ sudo cp -i wp_group11.pem ~/.ssh/
 echo "Debug marker1"
 
 sudo chmod 400 ~/.ssh/wp_group11.pem
-echo"Debug marker2"
 
 eval `ssh-agent`
-echo"Debug marker3"
 ssh-add ~/.ssh/wp_group11.pem
-echo"Debug marker4"
 export ANSIBLE_HOST_KEY_CHECKING=False
-echo"Debug marker5"
