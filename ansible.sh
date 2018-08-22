@@ -46,4 +46,4 @@ sudo chmod 400 ~/.ssh/wp_group11.pem
 
 eval `ssh-agent`
 ssh-add ~/.ssh/wp_group11.pem
-export ANSIBLE_HOST_KEY_CHECKING=False
+# export ANSIBLE_HOST_KEY_CHECKING=False
