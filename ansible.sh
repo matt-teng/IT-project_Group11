@@ -41,7 +41,7 @@ sudo chmod 666 ~/hosts
 wget https://raw.githubusercontent.com/matt-teng/IT-project_Group11/master/wp_group11.pem?token=AV4FZTFJWVzlYGxknS6j5edU1XYGhDzTks5bf-ltwA%3D%3D -O wp_group11.pem
 sudo cp -i wp_group11.pem ~/.ssh/
 
-sudo chmod 400 ~/.ssh/wp_group11.pem
+chmod 400 ~/.ssh/wp_group11.pem
 
 # eval `ssh-agent`
 # ssh-add ~/.ssh/wp_group11.pem
