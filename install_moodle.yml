@@ -91,7 +91,7 @@
     - name: create a moodledata folder and change the ownership
       file:
         path: /var/www/moodledata
-        stste: directory
+        state: directory
         owner: www-data
         group: www-data
         mode: 777
