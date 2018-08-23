@@ -44,6 +44,11 @@ sudo apt install awscli -y
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 aws ec2 import-key-pair --public-key-material "$(cat ~/.ssh/id_rsa.pub | tr -d '\n')"  --key-name main-instance
 
+echo "
+[defaults]
+host_key_checking = False
+"> ~/ansible.cfg
+
 # wget https://raw.githubusercontent.com/matt-teng/IT-project_Group11/master/wp_group11.pem?token=AV4FZTFJWVzlYGxknS6j5edU1XYGhDzTks5bf-ltwA%3D%3D -O wp_group11.pem
 # sudo chmod 777 wp_group11.pem
 # cp -i wp_group11.pem ~/.ssh/
@@ -55,4 +60,4 @@ aws ec2 import-key-pair --public-key-material "$(cat ~/.ssh/id_rsa.pub | tr -d '
 # eval $(ssh-agent -s)
 # eval `ssh-agent bash`
 # ssh-add ~/.ssh/MyKeyPair.pem
-export ANSIBLE_HOST_KEY_CHECKING=False
+# export ANSIBLE_HOST_KEY_CHECKING=False
