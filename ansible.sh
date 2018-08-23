@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # install software to manage repositories
 
 sudo apt update
