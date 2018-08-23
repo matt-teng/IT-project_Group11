@@ -47,9 +47,11 @@ sudo chmod 666 ~/hosts
 
 # create a new key pair
 aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > ~/.ssh/MyKeyPair.pem
+sudo chmod 400 ~/.ssh/MyKeyPair.pem
 
 
 eval $(ssh-agent -s)
+
 # eval `ssh-agent bash`
 ssh-add ~/.ssh/MyKeyPair.pem
 
