@@ -46,7 +46,7 @@ sudo chmod 666 ~/hosts
 # sudo chmod 400 ~/.ssh/wp_group11.pem
 
 # create a new key pair
-aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > ~/.ssh/MyKeyPair.pem
+sudo bash -c "aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > ~/.ssh/MyKeyPair.pem"
 sudo chmod 400 ~/.ssh/MyKeyPair.pem
 
 
