@@ -99,7 +99,7 @@
     - name: change the permissions for /var/www/html/
       file:
         path: /var/www/html/moodle
-        mode: 0755
+        mode: 777
         recurse: yes
 
     - name: change the mysqlDatabase configuration file
@@ -117,16 +117,17 @@
        priv: '*.*:ALL,GRANT'
        state: present
 
-    - name: Fix some of permissions
+    - name: Fix permission for /usr/bin/php
       file: 
-        path: "{{ item }}"
-        state: directory
+        path: /usr/bin/php
         mode: 777
         recurse: yes
-      with_items: 
-        - /var/www/html/moodle
-        - /usr/bin/php
-        - /var/www/html/moodle/admin/cli/install.php
+        
+    - name: Fix permission for /var/www/html/moodle/admin/cli/install.php
+      file: 
+        path: /var/www/html/moodle/admin/cli/install.php
+        mode: 777
+        recurse: yes    
           
     - name: print stdout
       debug:
