@@ -110,29 +110,29 @@
           innodb_file_per_table = 1
           innodb_file_format = Barracuda
           
-      # Add mysql user
-      - mysql_user:
-         name: moodler
-         password: moodlerpassword
-         priv: '*.*:ALL,GRANT'
-         state: present
+    # Add mysql user
+    - mysql_user:
+       name: moodler
+       password: moodlerpassword
+       priv: '*.*:ALL,GRANT'
+       state: present
 
-      - name: Fix some of permissions
-        file: 
-          path: "{{ item }}"
-          mode: 777
-          recurse: yes
-        with_items: 
-          - /var/www/html/moodle
-          - /usr/bin/php
-          - /var/www/html/moodle/admin/cli/install.php
+    - name: Fix some of permissions
+      file: 
+        path: "{{ item }}"
+        mode: 777
+        recurse: yes
+      with_items: 
+        - /var/www/html/moodle
+        - /usr/bin/php
+        - /var/www/html/moodle/admin/cli/install.php
           
-      - name: print stdout
-        debug:
-          msg: ""
+    - name: print stdout
+      debug:
+        msg: ""
           
-    handlers:
-    - name: restart apache2
-      service: 
-        name: apache2
-        state: restarted
+  handlers:
+  - name: restart apache2
+    service: 
+      name: apache2
+      state: restarted
