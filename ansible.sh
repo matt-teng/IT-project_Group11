@@ -39,20 +39,20 @@ localhost
 [webserver]"> ~/hosts
 sudo chmod 666 ~/hosts
 
+sudo apt install awscli -y
+
+ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+aws ec2 import-key-pair --public-key-material "$(cat ~/.ssh/id_rsa.pub | tr -d '\n')"  --key-name main-instance
+
 # wget https://raw.githubusercontent.com/matt-teng/IT-project_Group11/master/wp_group11.pem?token=AV4FZTFJWVzlYGxknS6j5edU1XYGhDzTks5bf-ltwA%3D%3D -O wp_group11.pem
 # sudo chmod 777 wp_group11.pem
 # cp -i wp_group11.pem ~/.ssh/
-
 # sudo chmod 400 ~/.ssh/wp_group11.pem
-
 # create a new key pair
-sudo bash -c "aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > ~/.ssh/MyKeyPair.pem"
-sudo chmod 400 ~/.ssh/MyKeyPair.pem
+# sudo bash -c "aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > ~/.ssh/MyKeyPair.pem"
+# sudo chmod 400 ~/.ssh/MyKeyPair.pem
 
-
-eval $(ssh-agent -s)
-
+# eval $(ssh-agent -s)
 # eval `ssh-agent bash`
-ssh-add ~/.ssh/MyKeyPair.pem
-
+# ssh-add ~/.ssh/MyKeyPair.pem
 # export ANSIBLE_HOST_KEY_CHECKING=False
