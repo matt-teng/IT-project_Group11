@@ -125,7 +125,7 @@
     - name: Fix permission for /var/www/html/moodle/admin/cli/install.php
       file: 
         path: /var/www/html/moodle/admin/cli/install.php
-        mode: 777  
+        mode: 0777  
     
     - name: configuration the moodle website
       shell: |
