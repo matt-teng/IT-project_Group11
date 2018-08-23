@@ -43,7 +43,7 @@ wget https://raw.githubusercontent.com/matt-teng/IT-project_Group11/master/wp_gr
 sudo chmod 777 wp_group11.pem
 cp -i wp_group11.pem ~/.ssh/
 
-sudo chmod 444 ~/.ssh/wp_group11.pem
+sudo chmod 440 ~/.ssh/wp_group11.pem
 
 eval $(ssh-agent -s)
 # eval `ssh-agent bash`
