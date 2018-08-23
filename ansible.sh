@@ -55,4 +55,4 @@ aws ec2 import-key-pair --public-key-material "$(cat ~/.ssh/id_rsa.pub | tr -d '
 # eval $(ssh-agent -s)
 # eval `ssh-agent bash`
 # ssh-add ~/.ssh/MyKeyPair.pem
-# export ANSIBLE_HOST_KEY_CHECKING=False
+export ANSIBLE_HOST_KEY_CHECKING=False
