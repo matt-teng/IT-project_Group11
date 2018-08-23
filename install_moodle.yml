@@ -120,15 +120,12 @@
     - name: Fix permission for /usr/bin/php
       file: 
         path: /usr/bin/php
-        state: directory
         mode: 777
-        recurse: yes
         
     - name: Fix permission for /var/www/html/moodle/admin/cli/install.php
       file: 
         path: /var/www/html/moodle/admin/cli/install.php
-        mode: 777
-        recurse: yes    
+        mode: 777  
           
     - name: print stdout
       debug:
