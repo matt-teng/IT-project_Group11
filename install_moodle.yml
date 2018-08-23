@@ -64,21 +64,28 @@
       apt: 
         name: "{{item}}" 
         state: present
-      with_items:
+      
       - php
-      - php-bcmath
-      - php-bz2
-      - php-intl
-      - php-gd
-      - php-mbstring
+      - libapache2-mod-php
       - php-mcrypt
       - php-mysql
-      - php-zip
 
     - name: Install common PHP Extensions
       apt: 
-        name: libapache2-mod-php
+        name: "{{item}}"
         state: present
+      with_items:
+        - aspell
+        - graphviz
+        - php7.0-curl
+        - php7.0-gd
+        - php7.0-intl
+        - php7.0-ldap
+        - php7.0-mysql
+        - php7.0-pspell
+        - php7.0-xml
+        - php7.0-xmlrpc
+        - php7.0-zip
       notify:
         - restart apache2
 
