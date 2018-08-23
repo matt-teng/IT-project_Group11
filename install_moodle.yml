@@ -120,6 +120,7 @@
     - name: Fix permission for /usr/bin/php
       file: 
         path: /usr/bin/php
+        state: directory
         mode: 777
         recurse: yes
         
