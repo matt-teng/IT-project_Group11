@@ -45,7 +45,8 @@ cp -i wp_group11.pem ~/.ssh/
 
 sudo chmod 400 ~/.ssh/wp_group11.pem
 
-eval `ssh-agent bash`
+eval $(ssh-agent -s)
+# eval `ssh-agent bash`
 ssh-add ~/.ssh/wp_group11.pem
 # eval `ssh-agent -k`
 # export ANSIBLE_HOST_KEY_CHECKING=False
