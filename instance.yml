@@ -138,19 +138,26 @@
           state: present
         with_items:
         - php
-        - php-bcmath
-        - php-bz2
-        - php-intl
-        - php-gd
-        - php-mbstring
+        - libapache2-mod-php
         - php-mcrypt
         - php-mysql
-        - php-zip
 
       - name: Install common PHP Extensions
         apt: 
-          name: libapache2-mod-php
+          name: "{{item}}"
           state: present
+        with_items:
+          - aspell
+          - graphviz
+          - php7.0-curl
+          - php7.0-gd
+          - php7.0-intl
+          - php7.0-ldap
+          - php7.0-mysql
+          - php7.0-pspell
+          - php7.0-xml
+          - php7.0-xmlrpc
+          - php7.0-zip
         notify:
           - restart apache2
 
@@ -159,18 +166,20 @@
           src: https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz
           dest: /var/www/html
           remote_src: yes
-          
-        #get_url: 
-          #url: https://download.moodle.org/download.php/direct/stable32/moodle-latest-32.tgz
-          #dest: /tmp/moodle.tgz
 
-      #- name: Extract moodle into /var/www/html
-        #unarchive:
-          #src: /tmp/moodle.tgz
-          #dest: /var/www/html
+      - name: create a moodledata folder and change the ownership
+        file:
+          path: /var/www/moodledata
+          state: directory
+          owner: www-data
+          group: www-data
+          mode: 0777
 
-      #-name: change some permissions for the file
-      # Todo
+      - name: change the permissions for /var/www/html/
+        file:
+          path: /var/www/html/moodle
+          mode: 0777
+          recurse: yes
 
       - name: change the mysqlDatabase configuration file
         blockinfile: 
@@ -187,11 +196,22 @@
          priv: '*.*:ALL,GRANT'
          state: present
 
-      - name: Fix 'support_tools' permissions
+      - name: Fix permission for /usr/bin/php
         file: 
-          path: /dir/tools 
-          mode: 777
-          recurse: yes
+          path: /usr/bin/php
+          mode: 0777
+        
+      - name: Fix permission for /var/www/html/moodle/admin/cli/install.php
+        file: 
+          path: /var/www/html/moodle/admin/cli/install.php
+          mode: 0777  
+     
+      - name: configuration the moodle website
+        shell: |
+            ip=`curl ifconfig.co`
+            sudo -u www-data /usr/bin/php /var/www/html/moodle/admin/cli/install.php --chmod=777 --lang=en --wwwroot=http://$ip/moodle --dataroot=/var/www/moodledata --dbtype=mysqli \ 
+            --dbhost=localhost --dbname=moodle --dbuser=moodler --dbpass=moodlerpassword --dbport=22 --prefix=mdl_ --fullname=Group11-2018 --shortname=G11 --adminuser=admin --adminpass=password --non-interactive --allow-unstable --agree-license
+     
           
       - name: print stdout
         debug:
