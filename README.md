@@ -29,7 +29,7 @@ Install moodle on Ubuntu16.04 via shell script.
 >
 >3. Run the shell script by 
 ```Bash
-echo "hello GitHub" #Bash
+>echo "hello GitHub" #Bash
 ```
 >
 >4. Open the browser and enter `yourPublicIP/moodle`          
