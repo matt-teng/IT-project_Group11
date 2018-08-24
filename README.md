@@ -28,9 +28,9 @@ Install moodle on Ubuntu16.04 via shell script.
 >2. Open putty or terminal and download the shell script [go.sh](/go.sh) on github
 >
 >3. Run the shell script by 
-```Bash
+>```Bash
 >echo "hello GitHub" #Bash
-```
+>```
 >
 >4. Open the browser and enter `yourPublicIP/moodle`          
 >
